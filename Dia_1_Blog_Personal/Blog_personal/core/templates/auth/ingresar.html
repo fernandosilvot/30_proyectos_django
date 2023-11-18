@@ -1,0 +1,41 @@
+{% extends "layouts/public/base.html" %}
+
+{% load static %}
+{% block titulo %}Inicio Sesion{% endblock titulo %}
+{% block css %} {% endblock css %}
+
+{% block contenido %}
+
+<div class="container mb-5 mt-5">
+    <div class="section-header subtitle mb-5">
+        <h3><strong>Iniciar Sesión</strong></h3><span class="sub"></span>
+    </div>
+    <div class="row justify-content-center align-items-center mb-5">
+        <div class="col-md-6">
+            <form action="" method="POST">
+            
+            {% csrf_token %}
+
+            {% if error %}
+                <small class="text-danger" >{{ error }}</small>
+            {% endif %}
+        
+            <div class="mb-3">
+                <label for="" class="form-label"><strong>Usuario</strong></label><span class="sub mb-3"></span>
+                <input type="text" name="usuario" id="usuario" class="form-control" placeholder="ingrese Usuario" required>
+                <small class="text-danger" id="usuario-error"></small>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label"><strong>Contraseña</strong></label><span class="sub mb-3"></span>
+                <input type="password" name="pass" id="pass" class="form-control" placeholder="ingrese Contraseña" required>
+                <small class="text-danger" id="password-error"></small>
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
+    </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock js %}

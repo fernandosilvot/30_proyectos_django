@@ -8,29 +8,8 @@
 <section class="py-4 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Blog Personal </h1>
+        <h1 class="fw-light">Blog Personal</h1>
        </div>
-    </div>
-</section>
-
-<section class="py-5  container">
-    <div class="section-header subtitle">
-        <h3 class="fw-light"><strong>Creador</strong></h3>
-    </div>
-    <div class="row justify-content-center">
-        <div class="card" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="col-md-4 mt-3 mb-3" >
-                    <img src="{% static "images/imagen-cv.jpg" %}" class="img-fluid rounded" alt="..." >
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Fernando Silva Trincado</h5>
-                        <p class="card-text">Soy estudiante de Analista Programador Computacional en Duoc UC, actualmente cursando segundo semestre. Mi trayectoria académica incluye un año en AIEP antes de unirme a Duoc UC en San Joaquín.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -43,15 +22,21 @@
         <div class="row">
             
             {% for Post in posts %}
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-                <div class="card">
-                    <img src="{{Post.imagen.url}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{Post.titulo}}</h5>
-                        <p class="card-text">{{Post.contenido}}</p>
-                        <p class="card-text"><small class="text-muted">{{Post.fecha_publicacion}}</small></p>
+            <div class="mb-3">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{{Post.imagen.url}}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">{{Post.titulo}}</h5>
+                          <p class="card-text">{{Post.contenido}}</p>
+                          <p class="card-text"><small class="text-body-secondary">{{Post.fecha_publicacion}}</small></p>
+                        </div>
+                      </div>
                     </div>
-                </div>
+                  </div>
             </div>
             {% endfor %}
         </div>

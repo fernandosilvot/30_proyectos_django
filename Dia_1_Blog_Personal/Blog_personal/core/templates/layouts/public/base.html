@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
     {% block css %}
     
-    {% endblock  %}
+    {% endblock css %}
   </head>
   <header>
     <div class="container">
@@ -27,17 +27,30 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'PaginaPrincipal' %}">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/estudio/' %}active{% endif %}" href="{% url 'Estudio' %}">Estudio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/proyectos/' %}active{% endif %}" href="{% url 'Proyectos' %}">Proyectos</a>
-                    </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                {% if user_profile %}
+                <div class="flex-shrink-0 dropdown">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="{{ user_profile.profile_picture.url }}" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" style="">
+                      <li><a class="dropdown-item" href="{% url 'Perfil' id=user_profile.id %}">Perfil</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                    </ul>
+                  </div>
+                {% else %}
+                <div class="flex-shrink-0 dropdown">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="{% static 'images/icono_user.svg' %}" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" style="">
+                      <li><a class="dropdown-item" href="{% url 'Ingresar' %}">Ingresar</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'Registrar' %}">Registrarse</a></li>
+                    </ul>
+                  </div>
+                {% endif %}
             </div>
         </div>
     </nav>

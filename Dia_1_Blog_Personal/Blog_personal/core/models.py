@@ -13,7 +13,7 @@ class Categoria(models.Model):
 class Post(models.Model):
     titulo = models.CharField(max_length=100)
     contenido = models.TextField()
-    fecha_publicacion = models.DateField(auto_now_add=True)
+    fecha_publicacion = models.DateField()
     categorias = models.ManyToManyField(Categoria)
     imagen = models.ImageField(upload_to='Post', null=True, blank=True)
     
@@ -23,7 +23,13 @@ class Post(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
     role = models.CharField(max_length=20, choices=settings.ROLES)
+    profile_picture = models.ImageField(upload_to='foto_perfil/', null=True, blank=True)
+    description = models.TextField(blank=True)
+    github_url = models.URLField(blank=True)
+    linkedin_url = models.URLField(blank=True)
+    extra_url = models.URLField(blank=True)
 
     def __str__(self):
         return f'{self.user.username} - {self.role}'
+    
     

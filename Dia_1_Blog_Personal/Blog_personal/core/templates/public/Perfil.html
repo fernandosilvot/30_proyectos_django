@@ -1,0 +1,81 @@
+{% extends "layouts/public/base.html" %}
+{% load static %}
+{% block titulo %}Perfil - {{ user_profile.user }}{% endblock titulo %}
+{% block css %}
+{% endblock css %}
+{% block contenido %}
+
+<section class="h-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card">
+                    <div class="rounded-top text-white d-flex flex-row profile-header mb-5">
+                        <div class="ms-4 mt-5 d-flex flex-column">
+                            <img src="{{ user_profile.profile_picture.url }}"
+                                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2">
+                        </div>
+                        <div class="ms-3 profile-info">
+                            <h5>{{user_profile.user}}</h5>
+                            <p>{{user_profile.description}}</p>
+                            
+                        </div>
+                    </div>
+                    <div class="p-4 text-black mt-5" >
+                        <div class="d-flex justify-content-end text-center py-1">
+                            <div>
+                                <a href="{{user_profile.linkedin_url}}" class="d-block link-body-emphasis text-decoration-none" >
+                                    <img src="{% static 'images/linkedin.svg' %}" alt="Linkedin" width="32" height="32" class="">
+                                </a>
+                                <p class="small text-muted mb-0">Linkedin</p>
+                            </div>
+                            <div class="px-3">
+                                <a href="{{user_profile.github_url}}" class="d-block link-body-emphasis text-decoration-none" >
+                                    <img src="{% static 'images/github.svg' %}" alt="Linkedin" width="32" height="32" class="">
+                                </a>
+                                <p class="small text-muted mb-0">GitHub</p>
+                            </div>
+                            <div>
+                                <a href="{{user_profile.extra_url}}" class="d-block link-body-emphasis text-decoration-none" >
+                                    <img src="{% static 'images/page.svg' %}" alt="Linkedin" width="32" height="32" class="">
+                                </a>
+                                <p class="small text-muted mb-0">Pagina</p>
+                            </div>
+                        </div>
+                        <a href="" class="btn btn-dark">Nuevo Post</a>
+                    </div>
+                    <div class="card-body p-4 text-black">
+                        
+                        
+                        
+                            {% for Post in posts %}
+                            <div class="mb-3">
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                      <div class="col-md-4">
+                                        <img src="{{Post.imagen.url}}" class="img-fluid rounded-start" alt="...">
+                                      </div>
+                                      <div class="col-md-8">
+                                        <div class="card-body">
+                                          <h5 class="card-title">{{Post.titulo}}</h5>
+                                          <p class="card-text">{{Post.contenido}}</p>
+                                          <p class="card-text"><small class="text-body-secondary">{{Post.fecha_publicacion}}</small></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock js %}
